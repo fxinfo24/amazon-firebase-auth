@@ -12,6 +12,7 @@ import Shop from './Components/Shop/Shop';
 import Orders from './Components/Orders/Orders';
 import Inventory from './Components/Inventory/Inventory';
 import Login from './Components/Login/Login';
+import cartProductsLoader from './Loaders/cartProductsLoader';
 
 const AppRouter = createBrowserRouter(
   [
@@ -26,7 +27,9 @@ const AppRouter = createBrowserRouter(
         {
           path: '/orders',
           element: <Orders></Orders>,
-          loader: () => fetch('products.json'),
+          // loader: () => fetch('products.json'),
+          // Usage of custom loader created by me
+          loader: cartProductsLoader
         },
         {
           path: '/inventory',
