@@ -11,7 +11,7 @@ const Orders = () => {
             <h2>This is route orders page: {orders.length}</h2>
             </div>
             <div className='cart-container'>
-                <Cart basket = {[]}></Cart>
+                <Cart basket = {orders}></Cart>
             </div>
         </div>
     );
