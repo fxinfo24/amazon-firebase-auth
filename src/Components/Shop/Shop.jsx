@@ -7,6 +7,9 @@ import {
 import Cart from "../Cart/Cart";
 import Product from "../Product/Product";
 import "./Shop.css";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashAlt, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 const Shop = () => {
   const [items, setItems] = useState([]);
@@ -75,7 +78,12 @@ const Shop = () => {
         ))}
       </div>
       <div className="cart-container">
-        <Cart basket={basket} clearCartHandler={clearCartHandler}></Cart>
+        <Cart basket={basket} clearCartHandler={clearCartHandler}>
+            <div>From shop</div>
+            <Link to = '/orders'>
+            <button className="reviewCartBtn">Review Orders <span><FontAwesomeIcon icon={faArrowRight} /></span></button>
+            </Link>
+        </Cart>
       </div>
     </div>
   );
