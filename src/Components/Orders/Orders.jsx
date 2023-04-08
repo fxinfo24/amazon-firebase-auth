@@ -4,6 +4,7 @@ import { useLoaderData } from "react-router-dom";
 import ReviewItem from "../ReviewItem/ReviewItem";
 import './Orders.css'
 import { useState } from "react";
+import { removeFromDb } from "../../utilities/fakedb";
 
 const Orders = () => {
   const orders = useLoaderData();
@@ -23,6 +24,9 @@ const Orders = () => {
     console.log(id);
     const remaining = cartItems.filter(item => item.id !== id);
     setCartItems(remaining);
+
+    // For removing from database use the following pre-made function
+    removeFromDb(id);
   };
 
   return (
