@@ -2,16 +2,16 @@ import React from "react";
 import Cart from "../Cart/Cart";
 import { useLoaderData } from "react-router-dom";
 import ReviewItem from "../ReviewItem/ReviewItem";
-import './Orders.css'
+import "./Orders.css";
 import { useState } from "react";
-import { removeFromDb } from "../../utilities/fakedb";
+import { deleteShoppingCart, removeFromDb } from "../../utilities/fakedb";
 
 const Orders = () => {
   const orders = useLoaderData();
   console.log(orders);
 
-//    For add, remove or change anything fro an array we use useState()
-// we are doing this for ReviewItems.jsx 's remove item button
+  //    For add, remove or change anything fro an array we use useState()
+  // we are doing this for ReviewItems.jsx 's remove item button
 
   const [cartItems, setCartItems] = useState(orders);
 
@@ -22,7 +22,7 @@ const Orders = () => {
   const removeFromCartHandler = (id) => {
     // Send this handler as props Ln 43
     console.log(id);
-    const remaining = cartItems.filter(item => item.id !== id);
+    const remaining = cartItems.filter((item) => item.id !== id);
     setCartItems(remaining);
 
     // For removing from database use the following pre-made function
@@ -32,7 +32,8 @@ const Orders = () => {
   // Handle Clear Cart
   const clearCartHandler = () => {
     setCartItems([]);
-};
+    deleteShoppingCart();
+  };
 
   return (
     <div className="shop-container">
@@ -47,21 +48,18 @@ const Orders = () => {
         } */}
 
         {/* After creating useState Ln 14 */}
-        {
-            cartItems.map((item) => <ReviewItem
-            key = { item.id}
-            item = { item }
-            removeFromCartHandler = {removeFromCartHandler}
-            ></ReviewItem>)
-        }
+        {cartItems.map((item) => (
+          <ReviewItem
+            key={item.id}
+            item={item}
+            removeFromCartHandler={removeFromCartHandler}
+          ></ReviewItem>
+        ))}
       </div>
       <div className="cart-container">
         {/* <Cart basket={orders}></Cart> */}
         {/* After changes Ln 14 and new map() Ln 30 */}
-        <Cart 
-        basket={cartItems}
-        clearCartHandler = {clearCartHandler}
-        ></Cart>
+        <Cart basket={cartItems} clearCartHandler={clearCartHandler}></Cart>
       </div>
     </div>
   );
