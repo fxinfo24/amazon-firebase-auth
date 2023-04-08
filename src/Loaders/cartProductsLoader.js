@@ -16,7 +16,7 @@ const storedBasket = getShoppingCart();
             // console.log(key);
             // Step 2: Get the product by using id/key
             const savedProduct = items.find(item => item.id === key);
-            console.log(savedProduct);
+            // console.log(savedProduct);
 
             // Step 3: Get the quantity of the product
             if(savedProduct){

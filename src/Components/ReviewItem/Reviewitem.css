@@ -1,0 +1,51 @@
+.review-item {
+  width: 571px;
+  /* height: 107px; */
+  border: 1px solid #95a0a7;
+  border-radius: 8px;
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.buying-detail {
+  flex-grow: 1;
+  margin-left: 16px;
+}
+
+.review-item img {
+  width: 91px;
+  height: 91px;
+  border: 1px solid #95a0a7;
+  border-radius: 6px;
+}
+
+.review-item button {
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+
+  /* For light theme use the following */
+  
+  /* color: #EB5757; */
+  /* background: rgba(235, 87, 87, 0.3); */
+}
+
+.review-item p {
+  margin: 0;
+}
+
+.priceColor {
+  color: #ff9900;
+}
+.review-item h6 {
+  margin: auto auto;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 21px;
+  line-height: 25px;
+  letter-spacing: 0.0015em;
+
+  /* color: #1C2B35; */
+}
