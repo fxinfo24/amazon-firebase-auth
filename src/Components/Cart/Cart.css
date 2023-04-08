@@ -19,3 +19,35 @@ letter-spacing: 0.0015em;
 .basket p {
     font-size: 17px;
 }
+
+.clearCartBtn {
+width: 232px;
+height: 48px;
+left: 872px;
+top: 752px;
+
+background: #FF3030;
+border-radius: 4px;
+
+display: flex;
+justify-content: space-between;
+align-items: center;
+
+margin-bottom: 16px;
+
+}
+
+.reviewCartBtn{
+width: 232px;
+height: 48px;
+left: 1192px;
+top: 514px;
+
+background: #FF9900;
+border-radius: 4px;
+
+display: flex;
+justify-content: space-between;
+align-items: center;
+
+}

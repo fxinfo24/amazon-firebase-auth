@@ -29,6 +29,11 @@ const Orders = () => {
     removeFromDb(id);
   };
 
+  // Handle Clear Cart
+  const clearCartHandler = () => {
+    setCartItems([]);
+};
+
   return (
     <div className="shop-container">
       <div className="review-container">
@@ -53,7 +58,10 @@ const Orders = () => {
       <div className="cart-container">
         {/* <Cart basket={orders}></Cart> */}
         {/* After changes Ln 14 and new map() Ln 30 */}
-        <Cart basket={cartItems}></Cart>
+        <Cart 
+        basket={cartItems}
+        clearCartHandler = {clearCartHandler}
+        ></Cart>
       </div>
     </div>
   );
