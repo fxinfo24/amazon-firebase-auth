@@ -1,11 +1,11 @@
-import React from "react";
-import "./Login.css";
-import { Link } from "react-router-dom";
+import React from 'react';
+import './SignUp.css'
+import { Link } from 'react-router-dom';
 
-const Login = () => {
-  return (
-    <div className="formContainer">
-      <h3 className="formTitle">Log In</h3>
+const SignUp = () => {
+    return (
+        <div className="formContainer">
+      <h3 className="formTitle">Register</h3>
       <form action="">
         <div className="formControl">
           <label htmlFor="email">Email</label>
@@ -15,18 +15,22 @@ const Login = () => {
           <label htmlFor="pass">Password</label>
           <input type="password" name="pass" id="" required />
         </div>
+        <div className="formControl">
+          <label htmlFor="confirmPass">Confirm Password</label>
+          <input type="password" name="confirmPass" id="" required />
+        </div>
         <button className="logInBtn" type="submit">
-          Log In
+          Sign Up
         </button>
         <p>
-          New to Ema-john? <Link to="/register">Create New Account</Link>
+        Already have an account? <Link to="/login">Login</Link>
         </p>
       </form>
       <button className="googleLogIn" type="submit">
         Continue With Google
       </button>
     </div>
-  );
+    );
 };
 
-export default Login;
+export default SignUp;
