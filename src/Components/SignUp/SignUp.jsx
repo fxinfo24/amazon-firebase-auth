@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './SignUp.css'
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../Providers/AuthProvider';
 
 const SignUp = () => {
 
     // Declare state for error
     const [ error, setError ] = useState('');
+
+    // Call created context api items as object
+    const {user, createUser} = useContext(AuthContext)
 
     // On submit click handler
     const handleSignUp = (event) => {
@@ -19,6 +23,8 @@ const SignUp = () => {
         console.log(email, pass, confirmPass);
 
         // Validations
+        setError('');
+        
         if ( pass !== confirmPass ) {
             setError('Password did not match');
             return
@@ -26,7 +32,19 @@ const SignUp = () => {
             setError('Password must be at least 6 characters');
             return
         }
+
+        createUser(email, pass)
+        .then(result => {
+            const loggedUser = result.user;
+            console.log(loggedUser);
+        })
+        .catch(error => {
+            console.error(error);
+            setError(error.message);
+        });
     };
+
+
     return (
         <div className="formContainer">
       <h3 className="formTitle">Register</h3>
