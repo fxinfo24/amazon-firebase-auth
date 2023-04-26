@@ -20,6 +20,7 @@ const Login = () => {
         .then(result => {
             const loggedUser = result.user;
             console.log(loggedUser);
+            form.reset()  // Reset form fields after successful login
         })
         .catch(err => {
             console.log(err);
