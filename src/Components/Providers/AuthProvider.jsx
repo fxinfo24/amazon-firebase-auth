@@ -19,11 +19,13 @@ const AuthProvider = ({children}) => {
     // 5. Create context api object
         // 5.1. Create user context
     const createUser = (email, password) => {
+        setLoader(true)
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
         // 5.2. Login user context
     const loginUser = (email, password) => {
+        setLoader(true)
         return signInWithEmailAndPassword(auth, email, password)
     }
 
@@ -52,6 +54,7 @@ const AuthProvider = ({children}) => {
     // 6. Declare state for loaders
     const [loader, setLoader] = useState(true)
         // 6.2 Use setLoader as 'false' under setEffect (Ln 43)
+        // 6.3 Use setLoader as 'true' after createUser & logInUser (Ln 22, 28)
     
     // Context Data as object to share with
     const AuthInfo = {

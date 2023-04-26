@@ -1,22 +1,28 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../Components/Providers/AuthProvider';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 
 const PrivateRoute = ({children}) => {
 
-    // Data from created Context in 'AuthProvider'
-    const { user, loader } = useContext(AuthContext)
+    // 1. Data from created Context in 'AuthProvider'
+    const { user, loader } = useContext(AuthContext);
 
-    // Check the Loader is loaded
+    // 3. Location
+    const location = useLocation()
+    console.log(location);
+
+    // 2. Check the Loader is loaded
     if(loader) {
         return <div>Loading ...</div>
     }
 
-    // Set conditions on AuthProvider
+    // Set conditions if user exists or not
     if (user) {
         return children;
     }
-    return <Navigate to = '/login'></Navigate>;
+
+    /* 4. If user not logged in, send to login page. After login send user to where the user was. */
+    return <Navigate to = '/login' state = {{from: location}} replace></Navigate>;
 };
 
 export default PrivateRoute;

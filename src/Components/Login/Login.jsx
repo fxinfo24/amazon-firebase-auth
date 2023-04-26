@@ -1,12 +1,20 @@
 import React, { useContext } from "react";
 import "./Login.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProvider";
 
 const Login = () => {
 
     // 1. Call created context api items as object
-    const {loginUser} = useContext(AuthContext)
+    const {loginUser} = useContext(AuthContext);
+
+    // 4. Send user to where s/he belongs (location)
+    const location = useLocation()
+    console.log(location);
+
+        // 4.1 Find where the user belongs (from)
+        const from = location.state.from.pathname || '/';
+        console.log(from);
 
     // 3. useNavigate to navigate to specific page after login
     const navigate = useNavigate();
@@ -19,14 +27,19 @@ const Login = () => {
         const email = form.email.value;
         const pass = form.pass.value;
         console.log(email, pass);
+
         loginUser(email, pass)
         .then(result => {
             const loggedUser = result.user;
             console.log(loggedUser);
             form.reset()  // Reset form fields after successful login
 
-            // 3.1 After login send user to ...
-            navigate('/')
+            /* 3.1 After login send user to ... */
+
+            // navigate('/')  
+
+            // or, 'from' Ln 16
+            navigate(from, {replace: true})
         })
         .catch(err => {
             console.log(err);
