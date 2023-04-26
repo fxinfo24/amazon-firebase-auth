@@ -1,9 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "./Login.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProvider";
 
 const Login = () => {
+
+    // 5. Show/hide password state
+    const [showPass, setShowPass] = useState(false);
+        // 5.1 Rest: Ln 64 to 68
 
     // 1. Call created context api items as object
     const {loginUser} = useContext(AuthContext);
@@ -13,7 +17,7 @@ const Login = () => {
     console.log(location);
 
         // 4.1 Find where the user belongs (from)
-        const from = location.state.from.pathname || '/';
+        const from = location.state?.from?.pathname || '/';
         console.log(from);
 
     // 3. useNavigate to navigate to specific page after login
@@ -57,7 +61,12 @@ const Login = () => {
         </div>
         <div className="formControl">
           <label htmlFor="pass">Password</label>
-          <input type="password" name="pass" id="" required />
+          <input type= { showPass ? 'text' : 'password'} name="pass" id="" required />
+          <p onClick={() => setShowPass(!showPass)}>
+            {
+                showPass ? <span>Hide Pass</span> : <span>Show Pass</span>
+            }
+          </p>
         </div>
         <button className="logInBtn" type="submit">
           Log In
