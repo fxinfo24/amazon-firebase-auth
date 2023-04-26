@@ -9,7 +9,7 @@ const PrivateRoute = ({children}) => {
 
     // Check the Loader is loaded
     if(loader) {
-        return loader.load
+        return <div>Loading ...</div>
     }
 
     // Set conditions on AuthProvider

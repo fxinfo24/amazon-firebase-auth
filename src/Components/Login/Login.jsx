@@ -1,14 +1,17 @@
 import React, { useContext } from "react";
 import "./Login.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProvider";
 
 const Login = () => {
 
-    // Call created context api items as object
+    // 1. Call created context api items as object
     const {loginUser} = useContext(AuthContext)
 
-    // Click handler for login
+    // 3. useNavigate to navigate to specific page after login
+    const navigate = useNavigate();
+
+    // 2. Click handler for login
     const loginClickHandler = (event) => {
         event.preventDefault();
 
@@ -21,6 +24,9 @@ const Login = () => {
             const loggedUser = result.user;
             console.log(loggedUser);
             form.reset()  // Reset form fields after successful login
+
+            // 3.1 After login send user to ...
+            navigate('/')
         })
         .catch(err => {
             console.log(err);
