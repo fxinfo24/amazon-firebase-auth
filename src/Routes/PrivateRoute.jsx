@@ -5,7 +5,12 @@ import { Navigate } from 'react-router-dom';
 const PrivateRoute = ({children}) => {
 
     // Data from created Context in 'AuthProvider'
-    const { user } = useContext(AuthContext)
+    const { user, loader } = useContext(AuthContext)
+
+    // Check the Loader is loaded
+    if(loader) {
+        return loader.load
+    }
 
     // Set conditions on AuthProvider
     if (user) {

@@ -10,7 +10,7 @@ const auth = getAuth(firebaseApp)
 
 const AuthProvider = ({children}) => {
 
-    // 4. Create useState
+    // 4. Create useState for user
     const [user, setUser] = useState(null)
 
     // Dummy data for the AuthInfo b4 useState method
@@ -39,7 +39,8 @@ const AuthProvider = ({children}) => {
 
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             console.log('Auth state changed', (currentUser));
-            setUser((currentUser))
+            setUser((currentUser));
+            setLoader(false);
         });
 
         // Stop observing user auth state change
@@ -47,13 +48,18 @@ const AuthProvider = ({children}) => {
             unsubscribe();
         }
     } , [])
+
+    // 6. Declare state for loaders
+    const [loader, setLoader] = useState(true)
+        // 6.2 Use setLoader as 'false' under setEffect (Ln 43)
     
     // Context Data as object to share with
     const AuthInfo = {
         user,
         createUser,
         loginUser,
-        logOutUser
+        logOutUser,
+        loader,
     }
 
 
